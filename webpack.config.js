@@ -1,7 +1,7 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 module.exports = {
-  entry: './src/index.jsx',
+  entry: './src/index.tsx',
   output: {
     filename: 'main.js',
     path: path.resolve(__dirname, 'dist'), //where the bundle is saved
@@ -12,6 +12,11 @@ module.exports = {
         test: /\.(js|jsx|ts|tsx)$/, // to apply the loader to all js and jsx files
         exclude: /node_modules/, // to exclude the node_modules folder
         loader: 'babel-loader', // the loader which will be used
+      },
+      {
+        test: /\.tsx?$/,
+        exclude: /node_modules/,
+        use: 'ts-loader',
       },
     ],
   },
@@ -27,6 +32,6 @@ module.exports = {
   },
   resolve: {
     //to avoid writing the extension of the file
-    extensions: ['.js', '.jsx'],
+    extensions: ['.ts','.tsx','.js', '.jsx'],
   },
 };
